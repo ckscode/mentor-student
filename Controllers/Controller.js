@@ -102,7 +102,7 @@ export const assignMentor = async(req,res) =>{
 
         res.status(200).json({student:stud,mentor:mentor});
     }catch(err){
-        res.status(500).json({error:err});
+        res.status(500).json({error:err,message:"But data updated successfully"});
         console.log(err)
     }
     
@@ -147,5 +147,19 @@ export const getPreviousMentors = async(req,res) =>{
       res.status(200).json({data:student})
     }catch(err){
      res.status(500).json({message:"error",error:err})
+    }
+}
+
+export const getStudentsOfMentor = async(req,res) =>{
+    try{
+       const mentorId = req.params.id;
+       const result = await Mentor.findById(mentorId).populate({path:'students',select:'studentName studentEmail course'});
+       if(!result){
+        res.status(404).json({message:'Students not found in this MentorID'})
+       }
+
+       res.status(200).json({data:result});
+    }catch(error){
+       res.status(500).json({message:"Could not get the Students from the Mentor ID",error:err})
     }
 }

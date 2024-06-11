@@ -1,5 +1,5 @@
 import express from 'express';
-import { addStudents, assignMentor, createMentor, createStudent, getMentors, getPreviousMentors, getStudents } from '../Controllers/Controller.js';
+import { addStudents, assignMentor, createMentor, createStudent, getMentors, getPreviousMentors, getStudents, getStudentsOfMentor } from '../Controllers/Controller.js';
 
 const router = express.Router();
 
@@ -10,6 +10,6 @@ router.get('/getStudents',getStudents);
 router.put('/addStudents/:id',addStudents);
 router.put('/assignMentor/:id',assignMentor);
 router.get('/getPreviousmentor/:id',getPreviousMentors);
-
+router.get('/getMentorStudents/:id',getStudentsOfMentor);
 
 export default router;
