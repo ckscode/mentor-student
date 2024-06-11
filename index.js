@@ -14,6 +14,10 @@ connectDB();
 
 app.use('/api',router);
 
+app.get('/',(req,res)=>{
+    res.status(200).send('<h1>Mentor-Student App</h1>')
+})
+
 app.listen(process.env.PORT,()=>{
     console.log('app is listening')
 })
